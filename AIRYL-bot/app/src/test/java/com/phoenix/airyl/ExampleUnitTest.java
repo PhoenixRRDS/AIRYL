@@ -1,4 +1,4 @@
-package com.phoenix.rudra.aityl;
+package com.phoenix.airyl;
 
 import org.junit.Test;
 
