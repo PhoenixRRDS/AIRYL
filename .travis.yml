@@ -15,6 +15,20 @@ before_install:
 - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+# NDK Path: https://stackoverflow.com/a/43593944
+- cd $HOME
+- wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O $HOME/android-sdk.tgz
+- mkdir android
+- unzip android-sdk.tgz -d android/sdk
+- export PATH=$PATH:$HOME/android/sdk/tools:$HOME/android/sdk/tools/bin
+- cd build/<your-build-directory>
+
+# NDK Path: https://stackoverflow.com/a/43593944
+install:
+- echo y | sdkmanager 'ndk-bundle'
+- echo y | sdkmanager 'cmake;3.6.3155560'
+- export ANDROID_HOME=$HOME/android/sdk
+- export ANDROID_NDK_HOME=$HOME/android/sdk/ndk-bundle
 
 
 licenses:
