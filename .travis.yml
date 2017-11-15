@@ -5,8 +5,9 @@ android:
   components:
   - platform-tools
   - tools
-  - build-tools-23.0.3
+  - build-tools-26.0.0
   - android-23
+  - android-26
 before_install:
 - chmod +x gradlew
 script:
