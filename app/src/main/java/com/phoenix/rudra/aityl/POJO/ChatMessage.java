@@ -1,9 +1,9 @@
 /* Sheldon - ChatMessage.java
  *
- * Copyright (C) 2017 Rudra Nil Basu <rudra.nil.basu.1996@gmail.com>
+* Copyright (C) 2017 Rohit Das <rohit.das950@gmail.com>
  *
  * Authors:
- *   Rudra Nil Basu <rudra.nil.basu.1996@gmail.com>
+ *   Rohit Das <rohit.das950@gmail.com>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
