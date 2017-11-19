@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.phoenix.rudra.aityl"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile 'me.himanshusoni.chatmessageview:chat-message-view:1.0.3'
+    compile files('libs/Ab.jar')
 }
