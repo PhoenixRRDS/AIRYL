@@ -198,6 +198,9 @@ public class MainActivity extends AppCompatActivity {
     {
         ChatMessage chatMessage = new ChatMessage(message, true, false);
         mAdapter.add(chatMessage);
+
+        // default "Hello World" Response
+        mimicOtherMessage("Hello World");
     }
 
     private void mimicOtherMessage(String message)
