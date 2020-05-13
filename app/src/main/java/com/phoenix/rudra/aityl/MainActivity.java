@@ -21,6 +21,7 @@
 
 package com.phoenix.rudra.aityl;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -44,13 +45,16 @@ import org.alicebot.ab.MagicBooleans;
 import org.alicebot.ab.MagicStrings;
 import org.alicebot.ab.PCAIMLProcessorExtension;
 import org.alicebot.ab.Timer;
+import org.xml.sax.ContentHandler;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ChatMessageAdapter(this, new ArrayList<ChatMessage>());
         mListView.setAdapter(mAdapter);
 
+        //to save logfiles by date
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        final String logFile = "log-" + date + ".txt";
+        File logDir = new File(Environment.getExternalStorageDirectory().toString() + "/hari/logs");
+        logDir.mkdirs();
+        File logOutput = new File(logDir, logFile);
+
+
         mButtonSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +98,20 @@ public class MainActivity extends AppCompatActivity {
 
                 sendMessage(message);
                 mimicOtherMessage(response);
+
+                //writing responses and messages to file
+                String msg = "User: " + message;
+                String resp = "Bot: " + response;
+                FileOutputStream logStream;
+                try {
+                    logStream = openFileOutput(logFile, Context.MODE_PRIVATE | Context.MODE_APPEND);
+                    logStream.write(msg.getBytes());
+                    logStream.write(resp.getBytes());
+                    logStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 mEditTextMessage.setText("");
                 mListView.setSelection(mAdapter.getCount() - 1);
             }
@@ -141,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
     public static boolean isSDCardAvailable()
     {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
+    private void writeToLog(String data, Context context) {
+
     }
 
     private void copyFile(InputStream inputStream, OutputStream outputStream) throws IOException {
